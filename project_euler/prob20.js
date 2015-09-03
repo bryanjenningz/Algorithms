@@ -1,4 +1,4 @@
-var pe20 = function(n) {
+var prob20 = function(n) {
   var factorial = function(number) {
     var f = function(n, total) { return n <= 1 ? total : f(n - 1, total * n); };
     return f(number, 1);
