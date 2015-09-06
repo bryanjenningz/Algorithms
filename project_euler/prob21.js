@@ -8,7 +8,7 @@ var prob21 = function(n) {
     for (var i = 2; i * i < n; i++) {
       if (n % i === 0) { sum += i + (n / i); }
     }
-    if (n % i === 0) { sum += i; } // i * i === n, so only add i once
+    if (n % i === 0 && i === n / i) { sum += i; } // i * i === n, so only add i once
     return sum;
   };
 
