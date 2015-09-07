@@ -6,17 +6,11 @@
 // paths in a different order. This turns into a combinatorial problem of
 // finding the number of ways you can rearrange n rights and n downs.
 
-function fact(n) {
-  var total = 1;
-  for (var i = 2; i <= n; i++) {
-    total *= i;
-  }
-  return total;
-}
+var factorial = function(n) { return n <= 1 ? 1 : n * factorial(n - 1); };
 
-function prob15(n) {
-  var factN = fact(n);
-  return fact(2 * n) / (factN * factN);
-}
+var prob15 = function(n) {
+  var nFactorial = factorial(n);
+  return factorial(2 * n) / (nFactorial * nFactorial);
+};
 
 console.log(prob15(20)); // -> 137846528820
