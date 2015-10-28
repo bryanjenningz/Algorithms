@@ -12,12 +12,11 @@
 // logic can be applied to finding the sums of the 5, 10, ..., 995 series
 // and the 15, 30, ..., 990 series.
 function prob1(maxValue) {
-  // This function return the first upper number in the most outside pair,
+  // This function returns the first upper number in the most outside pair,
   // (for example 999 is the upper number in the pair (3, 999) for the series
   // 3, 6, ..., 999) which we can later use to calculate the sum of each pair.
   function maxDivisible(maxValue, divisor) {
-    while (maxValue % divisor !== 0) { maxValue--; }
-    return maxValue;
+    return maxValue - (maxValue % divisor);
   }
 
   return (maxDivisible(maxValue, 3) + 3) * (Math.floor(maxValue / 3) / 2)
