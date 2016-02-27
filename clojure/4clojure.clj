@@ -101,3 +101,24 @@
 ;; 25
 (= (filter #(= (rem % 2) 1) #{1 2 3 4 5}) '(1 3 5))
 (= (filter odd? [4 2 1 6]) '(1))
+
+;; 26
+(= ((fn [n]
+    (loop [i 0 r [] a 1 b 1]
+      (if (= i n)
+        r
+        (recur (inc i) (conj r a) b (+ a b))))) 3) '(1 1 2))
+(= (#(take % ((fn fib [a b] (cons a (lazy-seq (fib b (+ a b))))) 1 1)) 6) '(1 1 2 3 5 8))
+(= (#(take % (map first (iterate (fn [[a b]] [b (+ a b)]) [1 1]))) 8) '(1 1 2 3 5 8 13 21))
+
+;; 27
+(false? (#(= (reverse (vec %)) (vec %)) '(1 2 3 4 5)))
+(true? (#(= (reverse %) (seq %)) "racecar"))
+
+;; 28
+(= ((comp (partial remove coll?) (partial tree-seq coll? seq)) '((1 2) 3 [4 [5 6]])) '(1 2 3 4 5 6))
+(= ((fn flat [x]
+      (if (coll? x)
+        (mapcat flat x)
+        [x])) ["a" ["b"] "c"]) '("a" "b" "c"))
+(= (#(remove coll? (tree-seq coll? seq %)) '((((:a))))) '(:a))
