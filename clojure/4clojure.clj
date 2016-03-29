@@ -122,3 +122,8 @@
         (mapcat flat x)
         [x])) ["a" ["b"] "c"]) '("a" "b" "c"))
 (= (#(remove coll? (tree-seq coll? seq %)) '((((:a))))) '(:a))
+
+;; 29
+(= (#(clojure.string/replace % #"[^A-Z]" "") "HeLlO, WoRlD!") "HLOWRD")
+(empty? (#(apply str (re-seq #"[A-Z]" %)) "nothing"))
+(= (#(clojure.string/join (re-seq #"[A-Z]" %)) "$#A(*&987Zf") "AZ")
