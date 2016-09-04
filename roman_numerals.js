@@ -19,16 +19,16 @@ function romanizeDigit(num, romanDigits) {
   var ten = romanDigits.ten;
   
   return (
-    num <= 3 ? times(num, one) :
+    num <= 3 ? repeat(num, one) :
     num === 4 ? (one + five) :
     num === 5 ? five :
-    num <= 8 ? five + times(num - 5, one) :
+    num <= 8 ? five + repeat(num - 5, one) :
     num === 9 ? one + ten :
     ''
   );
 }
 
-function times(amount, ch) {
+function repeat(amount, ch) {
   function go(amount, result) {
     return amount <= 0 ? result : go(amount - 1, result + ch);
   }
